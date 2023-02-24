@@ -11,6 +11,6 @@ router
   .patch(validateChild.validatePatchArray, validateMW, controller.updateChild)
   .delete(validateChild.validateId, validateMW, controller.deleteChild);
 
-router.get("/child/:id",validateChild.validateId, validateMW, controller.getChild);
+router.get("/child/:id",validateChild.validateIdParam, validateMW, controller.getChild);
 
 module.exports = router;

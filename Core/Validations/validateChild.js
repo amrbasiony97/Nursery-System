@@ -1,7 +1,7 @@
-const { body } = require("express-validator");
+const { body, param } = require("express-validator");
 
 exports.validatePostArray = [
-    body("_id").isInt().withMessage("Child id should be number"),
+    body("id").isInt().withMessage("Child id should be number"),
     body("fullname").isAlpha('en-US', {ignore: ' '}).withMessage("fullname should be string"),
     body("age").isInt({ min: 1, max: 6 }).withMessage("Age should be number less than 6 years"),
     body("level").isIn(['PreKG', 'KG1', 'KG2']).withMessage("level should be either: PreKG, KG1 or KG2)"),
@@ -12,7 +12,7 @@ exports.validatePostArray = [
 ];
 
 exports.validatePatchArray = [
-    body("_id").isInt().withMessage("Child id should be number"),
+    body("id").isInt().withMessage("Child id should be number"),
     body("fullname").optional().isAlpha('en-US', {ignore: ' '}).withMessage("fullname should be string"),
     body("age").optional().isInt({ min: 1, max: 6 }).withMessage("Age should be number less than 6 years"),
     body("level").optional().isIn(['PreKG', 'KG1', 'KG2']).withMessage("level should be either: PreKG, KG1 or KG2)"),
@@ -23,5 +23,9 @@ exports.validatePatchArray = [
 ];
 
 exports.validateId = [
-    body("_id").isInt().withMessage("Child id should be number")
+    body("id").isInt().withMessage("Child id should be number")
 ];
+
+exports.validateIdParam = [
+    param("id").isInt().withMessage("Child id should be number")
+]

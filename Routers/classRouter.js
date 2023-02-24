@@ -2,7 +2,6 @@ const express = require("express");
 const validateMW = require("../Core/Validations/validateMW");
 const controller = require("../Controllers/classController");
 const validateClass = require("../Core/Validations/validateClass");
-const validateTeacher = require("../Core/Validations/validateTeacher");
 const router = express.Router();
 
 router
@@ -14,21 +13,21 @@ router
 
 router.get(
   "/class/:id",
-  validateClass.validateClassId,
+  validateClass.validateClassIdParam,
   validateMW,
   controller.getClass
 );
 
 router.get(
   "/classChildern/:id",
-  validateClass.validateIdArray,
+  validateClass.validateClassIdParam,
   validateMW,
   controller.getClassChildren
 );
 
 router.get(
   "/classTeacher/:id",
-  validateTeacher.validateId,
+  validateClass.validateClassIdParam,
   validateMW,
   controller.getClassSupervisor
 );
