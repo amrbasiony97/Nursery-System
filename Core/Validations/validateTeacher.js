@@ -1,4 +1,4 @@
-const { body } = require("express-validator");
+const { body, param } = require("express-validator");
 
 exports.validatePostArray = [
     body("id").optional().isMongoId().withMessage("Teacher id should be objectID"),
@@ -16,4 +16,8 @@ exports.validatePatchArray = [
 
 exports.validateId = [
     body("id").isMongoId().withMessage("Teacher id should be objectID")
+];
+
+exports.validateIdParam = [
+    param("id").isMongoId().withMessage("Teacher id should be objectID")
 ];

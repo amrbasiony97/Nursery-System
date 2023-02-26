@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const teacherRouter = require("./Routers/teacherRouter");
 const childRouter = require("./Routers/childRouter");
 const classRouter = require("./Routers/classRouter");
+const adminRouter = require("./Routers/adminRouter");
+const loginRouter = require("./Routers/loginRouter");
+const authenticateMW = require("./Core/Auth/authenticateMW");
 const server = express();
 const port = process.env.PORT || 8080;
 
@@ -34,6 +37,9 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
 // Routes
+server.use(loginRouter);
+server.use(authenticateMW);
+server.use(adminRouter);
 server.use(teacherRouter);
 server.use(childRouter);
 server.use(classRouter);

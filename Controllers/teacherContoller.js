@@ -18,6 +18,16 @@ exports.getAllTeachers = (request, response, next) => {
     });
 };
 
+exports.getTeacher = (request, response, next) => {
+  TeacherSchema.findOne({ _id: request.params.id })
+    .then((data) => {
+      response.status(200).json({ data });
+    })
+    .catch((error) => {
+      next(error);
+    });
+}
+
 exports.addTeacher = (request, response, next) => {
   request.body.password = bcrypt.hashSync(request.body.password, saltRounds);
   const imagePath = (request.file === undefined) ? null : request.file.path;
